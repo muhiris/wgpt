@@ -63,6 +63,6 @@ Contributions to this project are welcome! If you encounter any issues or have i
 
 ## Contact
 
-If you have any questions or feedback, you can contact me at [my email](muhammadharis786@protonmail.com).
+If you have any questions or feedback, you can contact me at [my email](mailto:muhammadharis786@protonmail.com).
 
 Enjoy using WGPT and let your creativity and productivity increase with the help of GPT-3.5!
