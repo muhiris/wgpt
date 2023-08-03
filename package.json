@@ -1,0 +1,36 @@
+{
+  "name": "wgpt",
+  "version": "1.0.2",
+  "type": "module",
+  "description": "A simple CLI Application for chatgpt without API key",
+  "main": "index.js",
+  "bin": {
+    "wgpt": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Muhammad Haris",
+  "keywords": [
+    "chatgpt",
+    "chat",
+    "gpt",
+    "gpt3",
+    "openai",
+    "ai",
+    "artificial intelligence",
+    "chatbot",
+    "chatbots",
+    "chatbot api",
+    "chatbot api free",
+    "chatbot api without api key",
+    "chatbot api without api key free",
+    "chatbot api free without api ke"
+  ],
+  "license": "ISC",
+  "private": false,
+  "dependencies": {
+    "axios": "^1.4.0",
+    "clipboardy": "^3.0.0"
+  }
+}
