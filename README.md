@@ -57,12 +57,14 @@ Contributions to `wgpt` are welcome! If you find any issues or have ideas for im
 
 ## Author
 
-`wgpt` is authored by Muhammad Haris. You can contact the author [via email](mailto:muhammadharis786@protonmail.com)
+`wgpt` is authored by Muhammad Haris. You can contact the author [via email](mailto:muhammadharis786@protonmail.com).
+
+## Special Thanks
+
+Special thanks to the following contributors for their support to `wgpt`:
+
+> [Bundy](https://github.com/Bundy01) > [Andrew](https://github.com/aandrew-me)
 
 ## Acknowledgments
 
 `wgpt` was inspired by the desire to make AI interactions more accessible and user-friendly.
-
----
-
-**Disclaimer:** This package interacts with an external AI chat website. The behavior and responses of the AI are subject to change, and the availability of the chat website cannot be guaranteed indefinitely. Use this package responsibly and in accordance with the terms of service of the AI chat website. The author and maintainers are not responsible for any misuse or violations.
