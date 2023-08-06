@@ -63,7 +63,9 @@ Contributions to `wgpt` are welcome! If you find any issues or have ideas for im
 
 Special thanks to the following contributors for their support to `wgpt`:
 
-> [Bundy](https://github.com/Bundy01) > [Andrew](https://github.com/aandrew-me)
+> [Bundy](https://github.com/Bundy01)
+
+> [Andrew](https://github.com/aandrew-me)
 
 ## Acknowledgments
 
