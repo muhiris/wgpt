@@ -57,7 +57,7 @@ Contributions to `wgpt` are welcome! If you find any issues or have ideas for im
 
 ## Author
 
-`wgpt` is authored by Muhammad Haris. You can contact the author [via email at](mailto:muhammadharis786@protonmail.com).
+`wgpt` is authored by Muhammad Haris. You can contact the author [via email](mailto:muhammadharis786@protonmail.com)
 
 ## Acknowledgments
 
