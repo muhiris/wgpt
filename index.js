@@ -1,93 +1,107 @@
 #!/usr/bin/env node
-import { chromium } from "playwright";
-import clipboardy from "clipboardy";
+const axios = require("axios");
+const readline = require("readline");
+const packageJson = require("./package.json"); // Replace with your package.json path
 
-const url = "https://aichatonline.org/chat/";
-const DEFAULT_TIMEOUT_SECONDS = 7;
+const endpoint = "https://free.churchless.tech/v1/chat/completions";
 
-async function scrape(message, timeoutSeconds) {
-  try {
-    const browser = await chromium.launch({ headless: true }); // Run with a visible browser window
-    const context = await browser.newContext();
-    const page = await context.newPage();
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-    // Navigate to the chat URL
-    await page.goto(url);
-
-    // Type the provided message into the textarea
-    await page.fill("textarea", message);
-
-    // Click the 'Send' button
-    await page.press("textarea", "Enter");
-
-    // Wait for the specified or default timeout for the response to be generated
-    await page.waitForTimeout(
-      (timeoutSeconds || DEFAULT_TIMEOUT_SECONDS) * 1000
-    );
-
-    // Extract the most recent response div
-    const mostRecentResponse = await page.evaluate(() => {
-      const div = document.querySelector(".mwai-reply.mwai-ai:last-child");
-      return div ? div.textContent : null;
+async function getUserInput() {
+  const input = await new Promise((resolve) => {
+    rl.question("\n> ", (answer) => {
+      resolve(answer);
     });
+  });
 
-    // Remove the word "AI" from the beginning of the response
-    const cleanedResponse = mostRecentResponse.replace(/^AI/, "");
-
-    // Log the cleaned response
-    console.log(cleanedResponse.trim());
-
-    if (message.startsWith("Rephrase text in 3 ways: ")) {
-      clipboardy.writeSync(cleanedResponse.trim());
-      console.log("Result copied to the clipboard.");
-    }
-
-    // Close the browser
-    await browser.close();
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-}
-
-// Read command-line arguments
-const args = process.argv.slice(2);
-let message = null;
-let timeoutSeconds = null;
-
-// Parse command-line arguments
-for (let i = 0; i < args.length; i++) {
-  const arg = args[i];
-  if (arg === "--help" || arg === "-h") {
-    console.log("Usage: wgpt [message] [--timeout seconds] [-p] [-c]");
-    console.log("Example 1: wgpt 'Hello, AI!'");
-    console.log("Example 2: wgpt 'Hello, AI!' --timeout 10");
-    console.log("Example 3: wgpt 'Hello, AI!' -p");
-    console.log("Example 4: wgpt 'Write code to generate prime numbers' -c");
-    process.exit(0);
-  } else if (arg === "--timeout") {
-    if (i + 1 < args.length) {
-      timeoutSeconds = parseInt(args[i + 1]);
-      i++; // Skip the next argument since it was used for the timeout value
-    } else {
-      console.log(
-        "Invalid use of --timeout. Please provide a valid number for the timeout."
-      );
-      process.exit(1);
-    }
-  } else if (arg === "-p") {
-    message = "Rephrase text in 3 ways: " + message;
-  } else if (arg === "-c") {
-    message = "Write code to: " + message;
+  if (input.trim() === "") {
+    console.log("Please provide a message.");
+    return getUserInput();
   } else {
-    message = arg;
+    return input;
   }
 }
 
-if (!message) {
-  console.log(
-    "Please provide a message as a command-line argument or type --help for more information."
-  );
-  process.exit(1);
+async function main() {
+  const userArgument = process.argv[2];
+
+  if (userArgument === "-i") {
+    console.log("Interactive mode. Enter 'exit' to quit.");
+
+    while (true) {
+      const userInput = await getUserInput();
+
+      if (userInput.toLowerCase() === "exit") {
+        console.log("\nExiting interactive mode.");
+        break;
+      }
+
+      try {
+        const response = await axios.post(endpoint, {
+          messages: [{ role: "user", content: userInput }],
+        });
+
+        const content = response.data.choices[0].message.content;
+        console.log(">", content);
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    }
+  } else if (userArgument === "-v") {
+    console.log("Version:", packageJson.version);
+  } else if (userArgument === "-h" || userArgument === "--help") {
+    console.log("Usage:");
+    console.log("node index.js -i    : Enter interactive mode");
+    console.log("node index.js -v    : Display version from package.json");
+    console.log(
+      "node index.js -c    : Add 'Write code for' at start of message"
+    );
+    console.log(
+      "node index.js -p    : Add 'Rephrase it in 3 ways: ' at start of message"
+    );
+    console.log("node index.js -h/--help : Show help");
+  } else if (userArgument) {
+    const messageContent = process.argv.slice(3).join(" "); // Combine all arguments after the flag
+
+    let userInput = messageContent;
+
+    if (userArgument === "-c") {
+      userInput = `Write code for "${messageContent}"`;
+    }
+
+    if (userArgument === "-p") {
+      userInput = `Rephrase it in 3 ways: "${messageContent}"`;
+    }
+
+    try {
+      const response = await axios.post(endpoint, {
+        messages: [{ role: "user", content: userInput }],
+      });
+
+      const content = response.data.choices[0].message.content;
+      console.log(content);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  } else {
+    const userInput = await getUserInput();
+
+    try {
+      const response = await axios.post(endpoint, {
+        messages: [{ role: "user", content: userInput }],
+      });
+
+      const content = response.data.choices[0].message.content;
+      console.log(content);
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  }
+
+  rl.close();
 }
 
-scrape(message, timeoutSeconds);
+main();
