@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/wgpt) ![npm](https://img.shields.io/npm/dt/wgpt) ![NPM](https://img.shields.io/npm/l/wgpt)
 
-`wgpt` is an npm package that allows you to interact with an AI chat [website](https://aichatonline.org/chat/) right from your terminal. With `wgpt`, you can easily send messages to the AI chat, get responses, and even perform rephrasing or add code snippets to your messages. It's a convenient tool for experimenting with AI and generating creative responses.
+`wgpt` is an npm package that allows you to interact with an ChatGPT right from your terminal. With `wgpt`, you can easily send messages to the AI chat, get responses, and even perform rephrasing or add code snippets to your messages. It's a convenient tool for experimenting with AI and generating creative responses.
 
 ## Installation
 
@@ -21,31 +21,39 @@ The `-g` flag ensures that `wgpt` is installed globally on your system, making i
 ```bash
 # Send a simple message to the AI chat
 wgpt 'Hello, AI!'
+# interactive chat: Chat in loop till you type exit
+wgpt -i
+# Add 'Write code for' at start of message
+wgpt -c 'Hello World'
+# Add 'Rephrase it in 3 ways: ' at start of message
+wgpt -p 'How are you?'
+# To check version
+wgpt -v
+#To ask help
+wgpt -h
+# or
+wgpt --help
 
-# Set a custom timeout (in seconds) for waiting for the AI response
-wgpt 'Hello, AI!' --timeout 10
-
-# Rephrase a message and copy the result to the clipboard
-wgpt 'Rephrase text in 3 ways: How are you?' -p
-
-# Add code to the message
-wgpt 'Write code to calculate the factorial of a number' -c
 ```
 
 The command-line arguments are as follows:
 
-- `[message]`: The message you want to send to the AI chat.
-- `--timeout [seconds]`: Set a custom timeout for waiting for the AI response (default is 7 seconds).
-- `-p`: Rephrase the message in three different ways and copy the result to the clipboard.
-- `-c`: Add code snippets to the message.
-- `--help` or `-h`: Display the usage guide and examples.
+- `-i`: Enter interactive mode.
+
+- `-v`: Display version information from the `package.json`.
+
+- `-c`: Add "Write code for" at the start of your message.
+
+- `-p`: Add "Rephrase it in 3 ways: " at the start of your message.
+
+- `-h` or `--help`: Show help and usage information.
 
 ## Features
 
 - Send messages to an AI chat and receive responses.
 - Rephrase your messages in three different ways and copy the results to the clipboard.
 - Add code snippets to your messages for the AI to process.
-- Set a custom timeout for waiting for AI responses.
+- Enter Interactive mode.
 
 ## Contributing
 
@@ -58,14 +66,6 @@ Contributions to `wgpt` are welcome! If you find any issues or have ideas for im
 ## Author
 
 `wgpt` is authored by Muhammad Haris. You can contact the author [via email](mailto:muhammadharis786@protonmail.com).
-
-## Special Thanks
-
-Special thanks to the following contributors for their support to `wgpt`:
-
-> [Bundy](https://github.com/Bundy01)
-
-> [Andrew](https://github.com/aandrew-me)
 
 ## Acknowledgments
 

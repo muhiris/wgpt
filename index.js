@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-const axios = require("axios");
-const readline = require("readline");
-const packageJson = require("./package.json"); // Replace with your package.json path
+import axios from "axios";
+import readline from "readline";
 
 const endpoint = "https://free.churchless.tech/v1/chat/completions";
 
@@ -51,7 +50,7 @@ async function main() {
       }
     }
   } else if (userArgument === "-v") {
-    console.log("Version:", packageJson.version);
+    console.log("Version: 1.1.0");
   } else if (userArgument === "-h" || userArgument === "--help") {
     console.log("Usage:");
     console.log("node index.js -i    : Enter interactive mode");
