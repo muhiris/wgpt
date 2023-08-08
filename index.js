@@ -25,9 +25,9 @@ async function getUserInput() {
 }
 
 async function main() {
-  const userArgument = process.argv[2];
+  const userArguments = process.argv.slice(2);
 
-  if (userArgument === "-i") {
+  if (userArguments.includes("-i")) {
     console.log("Interactive mode. Enter 'exit' to quit.");
 
     while (true) {
@@ -49,9 +49,9 @@ async function main() {
         console.error("Error:", error.message);
       }
     }
-  } else if (userArgument === "-v") {
-    console.log("Version: 1.1.0");
-  } else if (userArgument === "-h" || userArgument === "--help") {
+  } else if (userArguments.includes("-v")) {
+    console.log("Version: 1.1.1");
+  } else if (userArguments.includes("-h") || userArguments.includes("--help")) {
     console.log("Usage:");
     console.log("node index.js -i    : Enter interactive mode");
     console.log("node index.js -v    : Display version from package.json");
@@ -62,16 +62,26 @@ async function main() {
       "node index.js -p    : Add 'Rephrase it in 3 ways: ' at start of message"
     );
     console.log("node index.js -h/--help : Show help");
-  } else if (userArgument) {
-    const messageContent = process.argv.slice(3).join(" "); // Combine all arguments after the flag
+  } else if (userArguments.includes("-c") || userArguments.includes("-p")) {
+    const messageIndex =
+      userArguments.indexOf("-c") !== -1
+        ? userArguments.indexOf("-c")
+        : userArguments.indexOf("-p");
+    if (messageIndex === -1 || messageIndex === userArguments.length - 1) {
+      console.log("Please provide a message after the flag.");
+      return;
+    }
+
+    const messageContent = userArguments.slice(messageIndex + 1).join(" ");
+    const flag = userArguments[messageIndex];
 
     let userInput = messageContent;
 
-    if (userArgument === "-c") {
+    if (flag === "-c") {
       userInput = `Write code for "${messageContent}"`;
     }
 
-    if (userArgument === "-p") {
+    if (flag === "-p") {
       userInput = `Rephrase it in 3 ways: "${messageContent}"`;
     }
 
@@ -86,7 +96,7 @@ async function main() {
       console.error("Error:", error.message);
     }
   } else {
-    const userInput = await getUserInput();
+    const userInput = userArguments.join(" "); // Join all arguments as the user input
 
     try {
       const response = await axios.post(endpoint, {
