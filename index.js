@@ -53,15 +53,13 @@ async function main() {
     console.log("Version: 1.1.1");
   } else if (userArguments.includes("-h") || userArguments.includes("--help")) {
     console.log("Usage:");
-    console.log("node index.js -i    : Enter interactive mode");
-    console.log("node index.js -v    : Display version from package.json");
+    console.log("wgpt -i    : Enter interactive mode");
+    console.log("wgpt -v    : Display version from package.json");
+    console.log("wgpt -c    : Add 'Write code for' at start of message");
     console.log(
-      "node index.js -c    : Add 'Write code for' at start of message"
+      "wgpt -p    : Add 'Rephrase it in 3 ways: ' at start of message"
     );
-    console.log(
-      "node index.js -p    : Add 'Rephrase it in 3 ways: ' at start of message"
-    );
-    console.log("node index.js -h/--help : Show help");
+    console.log("wgpt -h/--help : Show help");
   } else if (userArguments.includes("-c") || userArguments.includes("-p")) {
     const messageIndex =
       userArguments.indexOf("-c") !== -1
