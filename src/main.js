@@ -19,7 +19,7 @@ export async function main() {
       }
 
       try {
-        const content = await getResponseFromAPI(userInput);
+        const content = await getResponseFromAPI(userInput, false);
         console.log(">", content);
       } catch (error) {
         console.error("Error:", error.message);
