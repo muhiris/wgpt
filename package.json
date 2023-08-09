@@ -7,7 +7,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "chatgpt",
+    "chat",
+    "gpt",
+    "gpt3",
+    "openai",
+    "ai",
+    "artificial intelligence",
+    "chatbot",
+    "chatbots",
+    "chatbot api",
+    "chatbot api free",
+    "chatbot api without api key",
+    "chatbot api without api key free",
+    "chatbot api free without api key"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
