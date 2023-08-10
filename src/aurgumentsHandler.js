@@ -1,7 +1,8 @@
 export function parseCommandLineArguments(args) {
   const parsedArgs = {
     interactiveMode: args.includes("-i"),
-    versionFlag: args.includes("-v"),
+    versionFlag:
+      args.includes("-v") || args.includes("--version") || args.includes("--v"),
     helpFlag: args.includes("-h") || args.includes("--help"),
     codeFlag: args.includes("-c"),
     rephraseFlag: args.includes("-p"),

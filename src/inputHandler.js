@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 
 export async function getUserInput() {
   return new Promise((resolve) => {
-    rl.question("\n> ", (answer) => {
+    rl.question("\n➜ ", (answer) => {
       resolve(answer);
     });
   });

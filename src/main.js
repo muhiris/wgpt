@@ -3,10 +3,24 @@ import { getResponseFromAPI } from "./apiCalls.js";
 import { parseCommandLineArguments } from "./aurgumentsHandler.js";
 import { displayUsage, displayVersion } from "./display.js";
 
+// Function to print words with animation
+async function printWordsWithAnimation(words, delay) {
+  for (const word of words) {
+    await new Promise((resolve) => setTimeout(resolve, delay));
+    process.stdout.write(word + " "); // Print word with space
+  }
+  console.log(); // Print a new line after animation
+}
+
 export async function main() {
   const userArguments = process.argv.slice(2);
   const parsedArguments = parseCommandLineArguments(userArguments);
-
+  if (userArguments.length === 0) {
+    console.log("\n🌟 Welcome to wgpt! The Wonderful GPT-3 Tool 🌟");
+    console.log("\n\tType 'wgpt -h' for help ");
+    closeReadline();
+    return;
+  }
   if (parsedArguments.interactiveMode) {
     console.log("Interactive mode. Enter 'exit' to quit.");
 
@@ -20,7 +34,10 @@ export async function main() {
 
       try {
         const content = await getResponseFromAPI(userInput, false);
-        console.log(">", content);
+        const words = content.split(" "); // Split content into words
+        const animationDelay = 30; // Adjust the delay as needed
+
+        await printWordsWithAnimation(words, animationDelay);
       } catch (error) {
         console.error("Error:", error.message);
       }
@@ -31,7 +48,7 @@ export async function main() {
     displayUsage();
   } else if (parsedArguments.codeFlag || parsedArguments.rephraseFlag) {
     if (parsedArguments.invalidFlagUsage) {
-      console.log("Please provide a valid flag or type wgpt -h for help.");
+      console.log("Please provide valid Input or type wgpt -h for help.");
       closeReadline();
       return;
     }
@@ -47,7 +64,10 @@ export async function main() {
             : "Rephrase it in 3 ways: "
         } "${userInput}"`
       );
-      console.log(content);
+      const words = content.split(" "); // Split content into words
+      const animationDelay = 30; // Adjust the delay as neededs
+
+      await printWordsWithAnimation(words, animationDelay);
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -56,7 +76,10 @@ export async function main() {
 
     try {
       const content = await getResponseFromAPI(userInput);
-      console.log(content);
+      const words = content.split(" "); // Split content into words
+      const animationDelay = 30; // Adjust the delay as needed
+
+      await printWordsWithAnimation(words, animationDelay);
     } catch (error) {
       console.error("Error:", error.message);
     }
