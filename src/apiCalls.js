@@ -4,8 +4,6 @@ import ora from "ora";
 const endpoint = "https://api.openai.com/v1/chat/completions";
 const AUTH_KEY =
   "QmVhcmVyIHNrLWI0N3cxTTFJMGRxNGFzcEdncjZhVDNCbGJrRkppcDFMNGN6UklzMFQyaklEUXBNdA==";
-// var decodedString = atob(AUTH_KEY);
-const apiKey = "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"; // Replace with your actual OpenAI API key
 
 let responseBuffer = "";
 
