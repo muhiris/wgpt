@@ -3,7 +3,7 @@ import ora from "ora";
 
 const endpoint = "https://api.openai.com/v1/chat/completions";
 const AUTH_KEY =
-  "QmVhcmVyIHNrLWI0N3cxTTFJMGRxNGFzcEdncjZhVDNCbGJrRkppcDFMNGN6UklzMFQyaklEUXBNdA==";
+  "QmVhcmVyIHNrLUJEMmoxMlYxSnRrRFNPdkJCRkl6VDNCbGJrRkpGQ090SThjbUR1dE5KcmIxVUJBZw==";
 
 let responseBuffer = "";
 
