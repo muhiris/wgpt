@@ -1,6 +1,11 @@
 import axios from "axios";
 import ora from "ora";
-const endpoint = "https://free.churchless.tech/v1/chat/completions";
+
+const endpoint = "https://api.openai.com/v1/chat/completions";
+const AUTH_KEY =
+  "QmVhcmVyIHNrLWI0N3cxTTFJMGRxNGFzcEdncjZhVDNCbGJrRkppcDFMNGN6UklzMFQyaklEUXBNdA==";
+// var decodedString = atob(AUTH_KEY);
+const apiKey = "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"; // Replace with your actual OpenAI API key
 
 let responseBuffer = "";
 
@@ -27,6 +32,11 @@ export async function getResponseFromAPI(userInput, showSpinner = true) {
 }
 
 async function getResponse(userInput) {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `${atob(AUTH_KEY)}`,
+  };
+
   let res = await axios.post(
     endpoint,
     {
@@ -36,16 +46,15 @@ async function getResponse(userInput) {
     },
     {
       responseType: "stream",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: headers, // Set the headers
     }
   );
   return res;
 }
+
 function processResponses() {
-  const responseList = responseBuffer.split("data:"); // Split responses by "data:"
-  responseBuffer = responseList.pop(); // Store any incomplete response for the next iteration
+  const responseList = responseBuffer.split("data:");
+  responseBuffer = responseList.pop();
 
   for (const response of responseList) {
     const contentStartIndex = response.indexOf('"content":"');
@@ -54,10 +63,11 @@ function processResponses() {
       if (contentEndIndex !== -1) {
         const contentValue = response
           .substring(contentStartIndex + 11, contentEndIndex)
-          .replace(/\\n/g, "\n") // Replace "\\n" with newline characters
+          .replace(/\\n/g, "\n")
           .replace(/\\t/g, "\t")
           .replace(/\n6$/, "");
 
+        process.stdout.setEncoding("utf16le");
         process.stdout.write(contentValue);
       }
     }

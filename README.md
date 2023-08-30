@@ -14,6 +14,12 @@ npm install -g wgpt
 
 The `-g` flag ensures that `wgpt` is installed globally on your system, making it accessible from any directory.
 
+## Helping And Contributing
+
+Help `wgpt` by giving it stars on [GitHub repository](https://github.com/muhiris/wgpt).
+
+Also contributions to `wgpt` are welcome! If you find any issues or have ideas for improvements, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/muhiris/wgpt).
+
 ## Usage
 
 `wgpt` can be used directly from the terminal. Here are some examples of how to use it:
@@ -21,8 +27,6 @@ The `-g` flag ensures that `wgpt` is installed globally on your system, making i
 ```bash
 # Send a simple message to the AI chat
 wgpt 'Hello, AI!'
-# interactive chat: Chat in loop till you type exit
-wgpt -i
 # Add 'Write code for' at start of message
 wgpt -c 'Hello World'
 # Add 'Rephrase it in 3 ways: ' at start of message
@@ -38,8 +42,6 @@ wgpt --help
 
 The command-line arguments are as follows:
 
-- `-i`: Enter interactive mode.
-
 - `-v`: Display version information from the `package.json`.
 
 - `-c`: Add "Write code for" at the start of your message.
@@ -53,11 +55,6 @@ The command-line arguments are as follows:
 - Send messages to an AI chat and receive responses.
 - Rephrase your messages in three different ways and copy the results to the clipboard.
 - Add code snippets to your messages for the AI to process.
-- Enter Interactive mode.
-
-## Contributing
-
-Contributions to `wgpt` are welcome! If you find any issues or have ideas for improvements, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/muhiris/wgpt).
 
 ## License
 
