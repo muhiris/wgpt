@@ -11,7 +11,7 @@ const displayUsage = () => {
   console.log("wgpt -h              : Show help");
 };
 const displayVersion = () => {
-  console.log("1.1.7");
+  console.log("1.1.8");
 };
 
 export { displayUsage, displayVersion };
