@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/wgpt) ![npm](https://img.shields.io/npm/dt/wgpt) ![NPM](https://img.shields.io/npm/l/wgpt)
 
-`wgpt` is an npm package that allows you to interact with an ChatGPT right from your terminal. With `wgpt`, you can easily send messages to the AI chat, get responses, and even perform rephrasing or add code snippets to your messages. It's a convenient tool for experimenting with AI and generating creative responses.
+`wgpt` is an npm package that allows you to interact with BardAI right from your terminal. With `wgpt`, you can easily send messages to the AI chat, get responses, and even perform rephrasing or add code snippets to your messages. It's a convenient tool for experimenting with AI and generating creative responses.
 
 ## Installation
 
@@ -25,37 +25,8 @@ Also contributions to `wgpt` are welcome! If you find any issues or have ideas f
 `wgpt` can be used directly from the terminal. Here are some examples of how to use it:
 
 ```bash
-# Send a simple message to the AI chat
-wgpt 'Hello, AI!'
-# Add 'Write code for' at start of message
-wgpt -c 'Hello World'
-# Add 'Rephrase it in 3 ways: ' at start of message
-wgpt -p 'How are you?'
-# To check version
-wgpt -v
-#To ask help
-wgpt -h
-# or
-wgpt --help
-
+wgpt Hello, AI!
 ```
-
-The command-line arguments are as follows:
-
-- `-v`: Display version information from the `package.json`.
-
-- `-c`: Add "Write code for" at the start of your message.
-
-- `-p`: Add "Rephrase it in 3 ways: " at the start of your message.
-
-- `-h` or `--help`: Show help and usage information.
-
-## Features
-
-- Send messages to an AI chat and receive responses.
-- Rephrase your messages in three different ways and copy the results to the clipboard.
-- Add code snippets to your messages for the AI to process.
-
 ## License
 
 `wgpt` is open-source software licensed under the MIT License.
@@ -64,6 +35,3 @@ The command-line arguments are as follows:
 
 `wgpt` is authored by Muhammad Haris. You can contact the author [via email](mailto:muhammadharis786@protonmail.com).
 
-## Acknowledgments
-
-`wgpt` was inspired by the desire to make AI interactions more accessible and user-friendly.

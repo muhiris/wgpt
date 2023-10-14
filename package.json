@@ -4,6 +4,11 @@
   "type": "module",
   "description": "A simple CLI Application for chatgpt without API key",
   "main": "index.js",
+  "author": {
+    "name": "Muhammad Haris",
+    "email": "muhammadharis786@protonmail.com",
+    "url": "https://github.com/muhiris"
+  },
   "bin": {
     "wgpt": "./index.js"
   },
@@ -26,7 +31,6 @@
     "chatbot api without api key free",
     "chatbot api free without api key"
   ],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "ora": "^7.0.1"
