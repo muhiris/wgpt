@@ -33,6 +33,7 @@ const main = async () => {
       spinner.stop();
     }
     console.log(result);
+    process.exit(0);
   } catch (err) {
     // console.log(err);
     console.log('Please run again.\n\nType "node index.js <your input>"');
