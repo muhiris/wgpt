@@ -1,6 +1,6 @@
 # wgpt
 
-![npm](https://img.shields.io/npm/v/wgpt) ![npm](https://img.shields.io/npm/dt/wgpt) ![NPM](https://img.shields.io/npm/l/wgpt)
+![npm](https://img.shields.io/npm/v/wgpt) ![NPM](https://img.shields.io/npm/l/wgpt)
 
 `wgpt` is an npm package that allows you to interact with BardAI right from your terminal. With `wgpt`, you can easily send messages to the AI chat, get responses, and even perform rephrasing or add code snippets to your messages. It's a convenient tool for experimenting with AI and generating creative responses.
 
